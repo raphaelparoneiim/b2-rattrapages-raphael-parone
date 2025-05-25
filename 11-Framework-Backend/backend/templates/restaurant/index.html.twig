@@ -2,40 +2,149 @@
 
 {% block title %}Restaurant index{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+      /* Reset simple */
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f7f9;
+        color: #344055;
+        margin: 0;
+        padding: 2rem;
+      }
+
+      h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #222f3e;
+      }
+
+      .table-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        overflow-x: auto;
+        margin-bottom: 2rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+      }
+
+      thead {
+        background: #10ac84;
+        color: white;
+      }
+      thead th {
+        text-align: left;
+        padding: 1rem 1.25rem;
+        font-weight: 700;
+      }
+
+      tbody tr:hover {
+        background: #e6f3f1;
+      }
+
+      tbody td {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid #eaeaea;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.45rem 1.25rem;
+        border-radius: 25px;
+        background: #10ac84;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 8px 15px rgba(16,172,132,0.3);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .btn:hover {
+        background: #0e9e74;
+        box-shadow: 0 12px 25px rgba(14,158,116,0.5);
+      }
+
+      /* Small action links inside table */
+      .action-link {
+        font-weight: 600;
+        text-decoration: none;
+        margin-right: 1rem;
+        color: #10ac84;
+        transition: color 0.3s ease;
+        cursor: pointer;
+      }
+      .action-link.show {
+        color: #3498db;
+      }
+      .action-link.show:hover {
+        color: #1d6fa5;
+      }
+      .action-link.edit {
+        color: #10ac84;
+      }
+      .action-link.edit:hover {
+        color: #0e9e74;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 1rem;
+        }
+        h1 {
+          font-size: 2rem;
+        }
+        table {
+          min-width: 100%;
+        }
+      }
+    </style>
+{% endblock %}
+
 {% block body %}
-    <h1>Restaurant index</h1>
+    <h1>Restaurants</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for restaurant in restaurants %}
-            <tr>
-                <td>{{ restaurant.id }}</td>
-                <td>{{ restaurant.name }}</td>
-                <td>{{ restaurant.location }}</td>
-                <td>{{ restaurant.createdAt ? restaurant.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ restaurant.updatedAt ? restaurant.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}">show</a>
-                    <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-container">
+      <table>
+          <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Location</th>
+                  <th>Created At</th>
+                  <th>Updated At</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+          {% for restaurant in restaurants %}
+              <tr>
+                  <td>{{ restaurant.id }}</td>
+                  <td>{{ restaurant.name }}</td>
+                  <td>{{ restaurant.location }}</td>
+                  <td>{{ restaurant.createdAt ? restaurant.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                  <td>{{ restaurant.updatedAt ? restaurant.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                  <td>
+                      <a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}" class="action-link show">Show</a>
+                      <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}" class="action-link edit">Edit</a>
+                  </td>
+              </tr>
+          {% else %}
+              <tr>
+                  <td colspan="6" style="text-align:center; padding: 1rem; color: #777;">No records found</td>
+              </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+    </div>
 
-    <a href="{{ path('app_restaurant_new') }}">Create new</a>
+    <a href="{{ path('app_restaurant_new') }}" class="btn">Create New Restaurant</a>
 {% endblock %}

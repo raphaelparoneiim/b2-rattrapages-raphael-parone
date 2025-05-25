@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard - Mongoo{% endblock %}
+
+{% block stylesheets %}
+<style>
+  /* Reset simple */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7f9;
+    color: #344055;
+    margin: 0;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #222f3e;
+  }
+
+  /* Grid layout dashboard */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .card {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    transition: box-shadow 0.3s ease;
+  }
+  .card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  }
+
+  .card h5 {
+    margin: 0 0 0.75rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #1e272e;
+  }
+
+  .card .number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #10ac84;
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.45rem 1.25rem;
+    border-radius: 25px;
+    background: #10ac84;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 15px rgba(16,172,132,0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn:hover {
+    background: #0e9e74;
+    box-shadow: 0 12px 25px rgba(14,158,116,0.5);
+  }
+
+  /* Table styles */
+  .table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+
+  thead {
+    background: #10ac84;
+    color: white;
+  }
+  thead th {
+    text-align: left;
+    padding: 1rem 1.25rem;
+    font-weight: 700;
+  }
+
+  tbody tr:hover {
+    background: #e6f3f1;
+  }
+
+  tbody td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .badge-success {
+    background: #10ac84;
+    color: white;
+  }
+  .badge-secondary {
+    background: #8395a7;
+    color: white;
+  }
+
+  /* Action button small */
+  .btn-sm {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+  }
+
+  /* Responsive title spacing */
+  @media (max-width: 600px) {
+    body {
+      padding: 1rem;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+  <h1>Dashboard</h1>
+
+  <div class="stats-grid">
+    <div class="card">
+      <h5>Restaurants</h5>
+      <div class="number">{{ restaurant_count }}</div>
+      <a href="{{ path('app_restaurant_index') }}" class="btn">Voir les restaurants</a>
+    </div>
+
+    <div class="card">
+      <h5>Employés actifs</h5>
+      <div class="number">{{ active_employee_count }}</div>
+      <a href="{{ path('app_employee_index') }}" class="btn">Voir les employés</a>
+    </div>
+
+    <div class="card">
+      <h5>Employés inactifs</h5>
+      <div class="number" style="color:#8395a7;">{{ inactive_employee_count }}</div>
+      <a href="{{ path('app_employee_index') }}" class="btn">Voir les employés</a>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Restaurant</th>
+          <th>Employés actifs</th>
+          <th>Employés inactifs</th>
+          <th>Total employés</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stat in restaurant_stats %}
+          <tr>
+            <td>{{ stat.name }}</td>
+            <td><span class="badge badge-success">{{ stat.activeEmployees }}</span></td>
+            <td><span class="badge badge-secondary">{{ stat.inactiveEmployees }}</span></td>
+            <td>{{ stat.totalEmployees }}</td>
+            <td>
+              <a href="{{ path('app_employee_index', {'restaurant_id': stat.id}) }}" class="btn btn-sm">Voir employés</a>
+            </td>
+          </tr>
+        {% else %}
+          <tr><td colspan="5" style="text-align:center; padding:1rem; color:#777;">Aucune donnée disponible</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
