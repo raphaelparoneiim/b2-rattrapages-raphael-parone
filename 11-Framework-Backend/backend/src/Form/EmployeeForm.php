@@ -25,7 +25,7 @@ class EmployeeForm extends AbstractType
             ])
             ->add('restaurant', EntityType::class, [
                 'class' => Restaurant::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }

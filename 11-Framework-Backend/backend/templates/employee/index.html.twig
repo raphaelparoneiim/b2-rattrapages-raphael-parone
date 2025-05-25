@@ -120,6 +120,7 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Active</th>
+                  <th>Restaurant</th>
                   <th>Created At</th>
                   <th>Updated At</th>
                   <th>Actions</th>
@@ -138,6 +139,7 @@
                       <span class="badge badge-secondary">No</span>
                     {% endif %}
                   </td>
+                  <td>{{ employee.restaurant ? employee.restaurant.name : '—' }}</td>  {# Ajouté #}
                   <td>{{ employee.createdAt ? employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                   <td>{{ employee.updatedAt ? employee.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                   <td>

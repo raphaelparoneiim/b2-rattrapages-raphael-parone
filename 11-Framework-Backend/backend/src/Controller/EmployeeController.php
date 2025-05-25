@@ -15,10 +15,27 @@ use Symfony\Component\Routing\Attribute\Route;
 final class EmployeeController extends AbstractController
 {
     #[Route(name: 'app_employee_index', methods: ['GET'])]
-    public function index(EmployeeRepository $employeeRepository): Response
+    public function index(Request $request, EmployeeRepository $employeeRepository): Response
     {
+        $active = $request->query->get('active');
+        $restaurantId = $request->query->get('restaurant_id');
+
+        $criteria = [];
+
+        if ($active !== null) {
+            $criteria['active'] = (bool) $active;
+        }
+
+        if ($restaurantId !== null) {
+            $criteria['restaurant'] = $restaurantId;
+        }
+
+        $employees = $employeeRepository->findBy($criteria);
+
         return $this->render('employee/index.html.twig', [
-            'employees' => $employeeRepository->findAll(),
+            'employees' => $employees,
+            'active_filter' => $active,
+            'restaurant_filter' => $restaurantId,
         ]);
     }
 
