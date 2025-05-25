@@ -110,7 +110,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Employees</h1>
+    <h1>Employés</h1>
 
     <div class="table-container">
       <table>
@@ -141,8 +141,8 @@
                   <td>{{ employee.createdAt ? employee.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                   <td>{{ employee.updatedAt ? employee.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                   <td>
-                      <a href="{{ path('app_employee_show', {'id': employee.id}) }}" class="action-link show">Show</a>
-                      <a href="{{ path('app_employee_edit', {'id': employee.id}) }}" class="action-link edit">Edit</a>
+                      <a href="{{ path('app_employee_show', {'id': employee.id}) }}" class="action-link show">Voir</a>
+                      <a href="{{ path('app_employee_edit', {'id': employee.id}) }}" class="action-link edit">Modifier</a>
                   </td>
               </tr>
           {% else %}
@@ -154,6 +154,6 @@
       </table>
     </div>
 
-    <a href="{{ path('app_employee_new') }}" class="btn">Create New Employee</a>
-    <a href="{{ path('app_dashboard') }}" class="btn" style="margin-left: 1rem;">Back to Dashboard</a>
+    <a href="{{ path('app_employee_new') }}" class="btn">Créer Un Nouvel Employé</a>
+    <a href="{{ path('app_dashboard') }}" class="btn" style="margin-left: 1rem;">Retour Au Dashboard</a>
 {% endblock %}

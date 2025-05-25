@@ -106,37 +106,37 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Restaurant Details</h1>
+    <h1>Détails Du Restaurant</h1>
 
     <div class="details-container">
       <table>
           <tbody>
               <tr>
-                  <th>Id</th>
+                  <th>ID</th>
                   <td>{{ restaurant.id }}</td>
               </tr>
               <tr>
-                  <th>Name</th>
+                  <th>Nom</th>
                   <td>{{ restaurant.name }}</td>
               </tr>
               <tr>
-                  <th>Location</th>
+                  <th>Localisation</th>
                   <td>{{ restaurant.location }}</td>
               </tr>
               <tr>
-                  <th>Created At</th>
+                  <th>Créé Le</th>
                   <td>{{ restaurant.createdAt ? restaurant.createdAt|date('Y-m-d H:i:s') : '' }}</td>
               </tr>
               <tr>
-                  <th>Updated At</th>
+                  <th>Modifié Le</th>
                   <td>{{ restaurant.updatedAt ? restaurant.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
               </tr>
           </tbody>
       </table>
 
       <div class="actions">
-          <a href="{{ path('app_restaurant_index') }}" class="btn">Back to list</a>
-          <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}" class="btn">Edit</a>
+          <a href="{{ path('app_restaurant_index') }}" class="btn">Retour À La Liste</a>
+          <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}" class="btn">Modifier</a>
           {{ include('restaurant/_delete_form.html.twig', {'class': 'btn btn-delete'}) }}
       </div>
     </div>

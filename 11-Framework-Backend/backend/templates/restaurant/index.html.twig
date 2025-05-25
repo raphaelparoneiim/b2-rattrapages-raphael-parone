@@ -133,8 +133,8 @@
                   <td>{{ restaurant.createdAt ? restaurant.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                   <td>{{ restaurant.updatedAt ? restaurant.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                   <td>
-                      <a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}" class="action-link show">Show</a>
-                      <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}" class="action-link edit">Edit</a>
+                      <a href="{{ path('app_restaurant_show', {'id': restaurant.id}) }}" class="action-link show">Voir</a>
+                      <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}" class="action-link edit">Modifier</a>
                   </td>
               </tr>
           {% else %}
@@ -146,6 +146,6 @@
       </table>
     </div>
 
-    <a href="{{ path('app_restaurant_new') }}" class="btn">Create New Restaurant</a>
-    <a href="{{ path('app_dashboard') }}" class="btn" style="margin-left: 1rem;">Back to Dashboard</a>
+    <a href="{{ path('app_restaurant_new') }}" class="btn">Créer Un Nouveau Restaurant</a>
+    <a href="{{ path('app_dashboard') }}" class="btn" style="margin-left: 1rem;">Retour Au Dashboard</a>
 {% endblock %}
