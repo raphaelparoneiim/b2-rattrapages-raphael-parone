@@ -25,8 +25,12 @@ DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
 
 ## 🧱 4. Création de la base de données
 
-- Générer les migrations : `php bin/console make:migration`  
-- Appliquer les migrations : `php bin/console doctrine:migrations:migrate`  
+- 💣 Supprimer l’ancienne base si elle existe (utile en cas d’erreur) :  
+  `rm -f var/data.db`
+- Générer les migrations :  
+  `php bin/console make:migration`
+- Appliquer les migrations :  
+  `php bin/console doctrine:migrations:migrate`
 
 ## 🚀 5. Lancement du serveur local
 
