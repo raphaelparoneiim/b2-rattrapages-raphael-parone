@@ -4,9 +4,8 @@
 
 - 🐘 PHP 8.1 ou supérieur  
 - 📦 Composer  
-- 🛠️ Symfony CLI (optionnel mais recommandé)  
+- 🛠️ Symfony CLI 
 - 🗂️ SQLite (inclus avec PHP)  
-- 🌐 Navigateur web moderne
 
 ## 🛠️ 2. Installation du projet
 
@@ -19,7 +18,6 @@
 La base de données utilise SQLite. Par défaut, la configuration est déjà prête dans le fichier `.env` :
 
 DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
-
 
 ✅ Aucune autre configuration n’est nécessaire.
 
