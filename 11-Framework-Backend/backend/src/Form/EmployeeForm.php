@@ -17,12 +17,6 @@ class EmployeeForm extends AbstractType
             ->add('name')
             ->add('email')
             ->add('active')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
             ->add('restaurant', EntityType::class, [
                 'class' => Restaurant::class,
                 'choice_label' => 'name',
