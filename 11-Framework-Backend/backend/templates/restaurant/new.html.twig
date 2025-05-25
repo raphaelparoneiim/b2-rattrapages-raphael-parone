@@ -2,10 +2,47 @@
 
 {% block title %}Nouveau Restaurant{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f7f9;
+        color: #344055;
+        margin: 0;
+        padding: 2rem;
+      }
+
+      h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #222f3e;
+      }
+
+      a.btn {
+        display: inline-block;
+        padding: 0.45rem 1.25rem;
+        border-radius: 25px;
+        background: #10ac84;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 8px 15px rgba(16,172,132,0.3);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        margin-top: 1.5rem;
+      }
+      a.btn:hover {
+        background: #0e9e74;
+        box-shadow: 0 12px 25px rgba(14,158,116,0.5);
+      }
+    </style>
+{% endblock %}
+
 {% block body %}
     <h1>Créer Un Nouveau Restaurant</h1>
 
-    {{ include('restaurant/_form.html.twig') }}
+    {{ include('restaurant/_form.html.twig', {'button_label': 'Créer'}) }}
 
-    <a href="{{ path('app_restaurant_index') }}">Retour À La Liste</a>
+    <a href="{{ path('app_restaurant_index') }}" class="btn">Retour À La Liste</a>
 {% endblock %}

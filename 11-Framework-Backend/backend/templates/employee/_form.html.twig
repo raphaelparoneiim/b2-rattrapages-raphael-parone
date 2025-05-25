@@ -1,4 +1,67 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+  <div class="form-group">
+    {{ form_label(form.name, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.name) }}
+  </div>
+
+  <div class="form-group">
+    {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.email) }}
+  </div>
+
+  <div class="form-group">
+    {{ form_label(form.active, 'Actif', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.active, {'attr': {'class': 'form-check-input'}}) }}
+    {{ form_errors(form.active) }}
+  </div>
+
+  <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}
+
+<style>
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #222f3e;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: #10ac84;
+    box-shadow: 0 0 5px rgba(16,172,132,0.5);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.45rem 1.25rem;
+    border-radius: 25px;
+    background: #10ac84;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 15px rgba(16,172,132,0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: #0e9e74;
+    box-shadow: 0 12px 25px rgba(14,158,116,0.5);
+  }
+</style>
